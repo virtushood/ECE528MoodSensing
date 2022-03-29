@@ -1,0 +1,31 @@
+{% extends "0_layout.html" %}
+{% block content %}
+
+<h1>ECE 528 Mood Sense Project</h1>
+<hr>
+
+<section>
+  <h3>Overview</h3>
+  <p>This website acts as a sample interface to connect to and showcase the ECE 528 Mood Sense Project.</p>
+</section>
+<hr>
+
+<section>
+  <h3>More Info</h3>
+  <p>
+    The Mood Sense project utilizes Google's Vision API to analyze photos and identify attributes. The cloud functions are set up to automatically process uploaded images and use the FACE_DETECTION model to identify emotional state.
+  </p>
+</section>
+<hr>
+
+
+<section>
+  <h3>User Guide</h3>
+  <p>
+    Images can be uploaded directly from the <a href="{{ url_for('upload') }}">Upload Image</a> tab. The image database and stored computation results can be viewed from the <a href="{{ url_for('view') }}">view</a> tab.
+  </p>
+</section>
+
+
+{% endblock %}
+

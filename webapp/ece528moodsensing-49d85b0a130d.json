@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "ece528moodsensing",
+  "private_key_id": "49d85b0a130d63af45c3e5732a70e804f5763a9c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDdqF72BcvTuwFi\nJ5ty40xRNXpxVO1ynzXjhNDlLtxuXT5rOWw0ob70cCouCcNw+GyAxpwmogQAQk9G\nSxH9wIVpn1v4I+70M2d5T440XNRJmDOgau93p67G2OpVOJIr/C40eQT7euQH9Dip\npw90yZJSlYAo6rLJFt5ToH0pKtnM8e3G/LpCVkPcLOaMHJUEyOu09KBrxXrV3ud+\nBBR8nPmTk/t8Ix6BEAMuabOa5jFL7eHwd01SHThR2+5l7G869zS1Rn6Qqe1CrI55\nG4O5g+z5/VIQno41j6YqOesUSu+a59gITfX4I4WxkAOyLnFzxoM1s2319YLgog7L\nmD1Wg0XVAgMBAAECggEAAjMCuDGwB0qGdb0bXX00W2TqsVesoHPEcty1PuTjYoPx\n09oGwRHuxVmcjYbixcrtNqzhzT9Tx1XhF/s0Mz6XBEiEvtZKb2lYKDu6Fzppj85f\nCsMs25TSFt59mrlcN+wBYFtoCX+7ZfnOGx7ReDDszv11P1Ku0fB0ZcOEomUusooa\nPd+Tk2q0jIR1cmv0HPSlxiX47YYSixp8pH2W6Q5p71sc9uegyMysvyt5mstTM05/\n/nqCtY4vmQLbs6hxpSUZvgIE+QIDcfxbW0eLX5g5sMA5lQ1xV//QFouexLIwGUqC\ndz8TV3Qz6XEDfSSuSyuwzoJqSlqu4EokQFdEWf/sWQKBgQDxa9PHceRvInYsvR5R\nMDDT3U/tPVphUvZCfYVG5FdngeaFNr7H31OffPmSVaVVMR1qradtph1Yv1CQqCqz\njEsi6u9swT5LRfp86016cH0MEtl1DXy73fiw+PEmZf0glZlZ+SEt/wkzPghHLK+v\n1O40NcRk9DyJ3AJTeQmzk3xbrQKBgQDrCwQodTGS5AhudoyrmtCx23u5xvmXOkKa\n+LoX2OgrgPnPofjiOZ6lsrqHVAtq9s+PYhvhnUb5LvT9R5dKqC2Kg3hxXm99X7B1\nGuKL7+ogAHfiaiwACJecw/O0g2iP8H8ca61JrxIbeV3V2l4z8uer7mzmQWm/2DpW\n1ruKWIXXyQKBgAUL9f9jWB0ioUnKIkocMckcBUG2WJ9UNqWpLhIPT+xwALukK1TO\nTFc3K5hthelD/5NtUeSu5kompa6AdXQPaLqwIpUpbP3x1oyp9pKqq1KHSlhyEbtz\npnE8ov3kf+ggeHYzCQiHHlAd6dpjCsEoOFqLDTH3ERTornvEOfmxCZZ5AoGAJXEz\n0F4a75Nz5GTuM8gNxsd4Bjg0OmsFgTpuKq5bDdMV+IWM6DzVkP/Pxw8UYo2+stCm\nMGKlk7xvOonVCAeSeaZH4Ydxqz87FOybej9VxJNOhbr0F21G+aodgHwOhB+DoDtm\n9330HHxQ/mgy6YOgdDsfDe8NsYn4gSzj4z4G1EECgYEAm1qyAzQHbzwhHabSlw1t\nv/Jfw+5LgnunFtjyQU95W+D+Et8VcIH3q+ISjACIpEtns1yyGJ4dEB4DFIi/uH8p\nV273MVM0pX0QGQ/yUrkqYXbOUGExfwSEFBYeJyHEpsS4XL2z39iXDwn1PwvqTJbC\nUJDTEIKt9T/7AGwy11Vrh2s=\n-----END PRIVATE KEY-----\n",
+  "client_email": "test-service-account@ece528moodsensing.iam.gserviceaccount.com",
+  "client_id": "111343654191923198824",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/test-service-account%40ece528moodsensing.iam.gserviceaccount.com"
+}

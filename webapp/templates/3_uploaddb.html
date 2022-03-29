@@ -1,0 +1,47 @@
+{% extends "0_layout.html" %}
+
+{% block content %}
+
+<h1>Upload Image File</h1>
+<hr>
+
+<section>
+  <h3>Upload</h3>
+  <form method="post" enctype="multipart/form-data">
+    <label for="upload" class="btn btn-file">
+      <input id="upload" type="file" name="file" style="display: none;">Select Image
+    </label>
+    <input class="btn" type="submit" value="Upload">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <span>{{ message }}</span>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <p id="fn">Selected file: None</p>
+  </form>
+</section>
+
+<hr>
+
+<section>
+  <h3>Guide</h3>
+  <p>
+    The upload image feature allows you to directly upload an image to the cloud storage bucket.
+  </p>
+  <p>
+    The upload will trigger the cloud function to process the image using Google's image AI APIs. The cloud function will automatically store the json result in the json storage bucket.
+  </p>
+  <p>
+    After upload, you can find the result of the computation in the <a href="{{ url_for('view') }}">view</a> page.
+  </p>
+</section>
+
+<script>
+  document.getElementById('upload').onchange = function () {
+    document.getElementById('fn').innerHTML = 'Selected file: ' + this.value.split('\\').pop().split('/').pop();
+  };
+</script>
+
+{% endblock %}
