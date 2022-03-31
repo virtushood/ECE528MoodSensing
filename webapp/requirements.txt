@@ -1,0 +1,4 @@
+Flask >= 1.1.2
+werkzeug >= 1.0.1
+json >= 2.0.9
+google-cloud-storage >= 2.2.1

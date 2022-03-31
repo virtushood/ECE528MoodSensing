@@ -159,3 +159,6 @@ def favicon():
     ''' Returns the favicon icon when requested in the old way (IE era). '''
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.jpg', mimetype='image/jpeg')
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
