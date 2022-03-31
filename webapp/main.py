@@ -70,7 +70,7 @@ def make_img_table():
 
 
 
-def AddToDb(filename):
+def AddToDb(photo):
     ''' Adds the uploaded file to the gcloud database. '''
     f = open('ece528moodsensing-49d85b0a130d.json', 'r')
     gcp_credentials_string = f.read()
@@ -83,7 +83,7 @@ def AddToDb(filename):
     # https://console.cloud.google.com/storage/browser/[bucket-id]/
     img_bucket = client.get_bucket('ece528imagestorage')
     blub = img_bucket.blob(str(makeUniqueName()))
-    blub.upload_from_filename(app.config['UPLOAD_FOLDER'] + filename)
+    blub.upload_from_string(photo.read(), content_type=photo.content_type)
     
 
 
@@ -110,10 +110,8 @@ def upload():
             flash('No selected file')
             return redirect(request.url)
         if file:
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            AddToDb(filename)
-            flash(f'{filename} uploaded successfully.')
+            AddToDb(file)
+            flash(f'{file} uploaded successfully.')
     return render_template('3_uploaddb.html', title='Upload',
                            year=datetime.now().year)
 
