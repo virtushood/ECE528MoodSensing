@@ -37,12 +37,7 @@ def make_img_table():
     ''' Generates a list of the components data for the /view page. '''
     # connect to gcp
 
-    f = open('ece528moodsensing-49d85b0a130d.json', 'r')
-    gcp_credentials_string = f.read()
-    f.close()
-    gcp_json_credentials_dict = json.loads(gcp_credentials_string)
-    credentials = service_account.Credentials.from_service_account_info(gcp_json_credentials_dict)
-    client = storage.Client(project=gcp_json_credentials_dict['project_id'], credentials=credentials)
+    client = storage.Client()
 
     # Retrieve an existing bucket
     # https://console.cloud.google.com/storage/browser/[bucket-id]/
@@ -70,20 +65,15 @@ def make_img_table():
 
 
 
-def AddToDb(filename):
+def AddToDb(photo):
     ''' Adds the uploaded file to the gcloud database. '''
-    f = open('ece528moodsensing-49d85b0a130d.json', 'r')
-    gcp_credentials_string = f.read()
-    f.close()
-    gcp_json_credentials_dict = json.loads(gcp_credentials_string)
-    credentials = service_account.Credentials.from_service_account_info(gcp_json_credentials_dict)
-    client = storage.Client(project=gcp_json_credentials_dict['project_id'], credentials=credentials)
+    client = storage.Client()
 
     # Retrieve an existing bucket
     # https://console.cloud.google.com/storage/browser/[bucket-id]/
     img_bucket = client.get_bucket('ece528imagestorage')
     blub = img_bucket.blob(str(makeUniqueName()))
-    blub.upload_from_filename(app.config['UPLOAD_FOLDER'] + filename)
+    blub.upload_from_string(photo.read(), content_type=photo.content_type)
     
 
 
@@ -110,10 +100,8 @@ def upload():
             flash('No selected file')
             return redirect(request.url)
         if file:
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            AddToDb(filename)
-            flash(f'{filename} uploaded successfully.')
+            AddToDb(file)
+            flash(f'{file} uploaded successfully.')
     return render_template('3_uploaddb.html', title='Upload',
                            year=datetime.now().year)
 
@@ -159,3 +147,6 @@ def favicon():
     ''' Returns the favicon icon when requested in the old way (IE era). '''
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.jpg', mimetype='image/jpeg')
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
