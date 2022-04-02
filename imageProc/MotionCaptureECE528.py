@@ -10,7 +10,7 @@ import os
 
 def AddToDb(filename):
     ''' Adds the uploaded file to the gcloud database. '''
-    f = open('ece528moodsensing-49d85b0a130d.json', 'r')
+    f = open('C:\PythonProjects\MoodSensingDependencies\ece528moodsensing-49d85b0a130d.json', 'r')
     gcp_credentials_string = f.read()
     f.close()
     gcp_json_credentials_dict = json.loads(gcp_credentials_string)
