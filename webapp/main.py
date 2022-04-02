@@ -37,12 +37,7 @@ def make_img_table():
     ''' Generates a list of the components data for the /view page. '''
     # connect to gcp
 
-    f = open('ece528moodsensing-49d85b0a130d.json', 'r')
-    gcp_credentials_string = f.read()
-    f.close()
-    gcp_json_credentials_dict = json.loads(gcp_credentials_string)
-    credentials = service_account.Credentials.from_service_account_info(gcp_json_credentials_dict)
-    client = storage.Client(project=gcp_json_credentials_dict['project_id'], credentials=credentials)
+    client = storage.Client()
 
     # Retrieve an existing bucket
     # https://console.cloud.google.com/storage/browser/[bucket-id]/
@@ -72,12 +67,7 @@ def make_img_table():
 
 def AddToDb(photo):
     ''' Adds the uploaded file to the gcloud database. '''
-    f = open('ece528moodsensing-49d85b0a130d.json', 'r')
-    gcp_credentials_string = f.read()
-    f.close()
-    gcp_json_credentials_dict = json.loads(gcp_credentials_string)
-    credentials = service_account.Credentials.from_service_account_info(gcp_json_credentials_dict)
-    client = storage.Client(project=gcp_json_credentials_dict['project_id'], credentials=credentials)
+    client = storage.Client()
 
     # Retrieve an existing bucket
     # https://console.cloud.google.com/storage/browser/[bucket-id]/
