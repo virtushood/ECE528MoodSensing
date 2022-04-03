@@ -19,6 +19,14 @@ import os
 import sys
 from uuid import uuid4 as makeUniqueName  # To generate unique id for comps
 
+from twilio.rest import Client
+
+account_sid = os.environ['TWILIO_ACCOUNT_SID']
+auth_token = os.environ['TWILIO_AUTH_TOKEN']
+twilio_phone = os.environ['TWILIO_PHONE_NUMBER']
+
+twilio_client = Client(account_sid, auth_token)
+
 # static_path is the deprecated form of static_url_path
 app = Flask(import_name=__name__, static_url_path='/static',
             static_folder='static', template_folder='templates')
@@ -74,6 +82,15 @@ def AddToDb(photo):
     img_bucket = client.get_bucket('ece528imagestorage2')
     blub = img_bucket.blob(str(makeUniqueName()))
     blub.upload_from_string(photo.read(), content_type=photo.content_type)
+
+    message = twilio_client.messages \
+                .create(
+                     body="new picture has been uploaded",
+                     from_=twilio_phone,
+                     to='+12483036485'
+                 )
+
+    print(message.sid)
     
 
 
