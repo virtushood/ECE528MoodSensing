@@ -41,8 +41,8 @@ def make_img_table():
 
     # Retrieve an existing bucket
     # https://console.cloud.google.com/storage/browser/[bucket-id]/
-    img_bucket = client.get_bucket('ece528imagestorage')
-    json_bucket = client.get_bucket('ece528jsonstorage')
+    img_bucket = client.get_bucket('ece528imagestorage2')
+    json_bucket = client.get_bucket('ece528jsonstorage2')
 
     images = {}
     emotions_keys = ['angerLikelihood', 'sorrowLikelihood', 'joyLikelihood', 'surpriseLikelihood']
@@ -71,7 +71,7 @@ def AddToDb(photo):
 
     # Retrieve an existing bucket
     # https://console.cloud.google.com/storage/browser/[bucket-id]/
-    img_bucket = client.get_bucket('ece528imagestorage')
+    img_bucket = client.get_bucket('ece528imagestorage2')
     blub = img_bucket.blob(str(makeUniqueName()))
     blub.upload_from_string(photo.read(), content_type=photo.content_type)
     
