@@ -38,8 +38,39 @@ app.config['MAX_CONTENT_LENGTH'] = 8 * 1024 * 1024
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 365 * 24 * 60 * 60
 app.config['UPLOAD_FOLDER'] = 'uploads/'  # Sets the upload folder
 app.config['DL_FOLDER'] = 'comps/'  # Sets the download folder
-app.config['SECRET_KEY'] = r'''g^|'O?C&3}w=n=6c;foNw$kW#'''
+app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 
+# pie chart data
+labels = ['Anger', 'Sorrow', 'Joy', 'Surprise']
+values = [0, 0, 0, 0]
+colors = ["#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA"]
+
+
+def get_pie_chart_data():
+    for item in values:
+        item = 0
+    client = storage.Client()
+    
+    img_bucket = client.get_bucket('ece528imagestorage2')
+    json_bucket = client.get_bucket('ece528jsonstorage2')
+
+    images = {}
+    emotions_keys = ['angerLikelihood', 'sorrowLikelihood', 'joyLikelihood', 'surpriseLikelihood']
+    emotions = ['Anger', 'Sorrow', 'Joy', 'Surprise']
+
+
+    for img_blob in img_bucket.list_blobs():
+        json_blob = json_bucket.get_blob(img_blob.name + '/output-1-to-1.json')
+        json_url = ''
+        json_str = ''
+        if json_blob:
+            json_url = json_blob.public_url
+            json_str = json_blob.download_as_string()
+            json_obj = json.loads(json_str)
+            
+            for i, emotion_key in enumerate(emotions_keys):
+                if json_obj['responses'][0]['faceAnnotations'][0][emotion_key] in ['VERY_LIKELY', 'LIKELY']:
+                    values[i] += 1
 
 def make_img_table():
     ''' Generates a list of the components data for the /view page. '''
@@ -90,7 +121,7 @@ def AddToDb(photo):
                      to='+12483036485'
                  )
 
-    print(message.sid)
+    #print(message.sid)
     
 
 
@@ -99,7 +130,7 @@ def AddToDb(photo):
 def home():
     '''Renders the home page.'''
     return render_template('1_home.html', title='ECE 528 Mood Sense',
-                           year=datetime.now().year)
+                           year=datetime.now().year, set=zip(values, labels, colors), max=12)
 
 
 
