@@ -43,7 +43,7 @@ app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 # pie chart data
 labels = ['Anger', 'Sorrow', 'Joy', 'Surprise']
 values = [0, 0, 0, 0]
-colors = ["#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA"]
+colors = ["#F7464A", "#bdbdbd", "#ffff00", "#4cc4fc"]
 
 
 def get_pie_chart_data():
@@ -69,7 +69,7 @@ def get_pie_chart_data():
             json_obj = json.loads(json_str)
             
             for i, emotion_key in enumerate(emotions_keys):
-                if json_obj['responses'][0]['faceAnnotations'][0][emotion_key] in ['VERY_LIKELY', 'LIKELY']:
+                if json_obj['responses'][0]['faceAnnotations'][0][emotion_key] in ['VERY_LIKELY', 'LIKELY', 'POSSIBLE']:
                     values[i] += 1
 
 def make_img_table():
