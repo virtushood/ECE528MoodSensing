@@ -47,8 +47,8 @@ colors = ["#F7464A", "#bdbdbd", "#ffff00", "#4cc4fc"]
 
 
 def get_pie_chart_data():
-    for item in values:
-        item = 0
+    global values
+    values = [0, 0, 0, 0]
     client = storage.Client()
     
     img_bucket = client.get_bucket('ece528imagestorage2')
