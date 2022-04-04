@@ -129,6 +129,7 @@ def AddToDb(photo):
 @app.route('/', methods=['GET'])
 def home():
     '''Renders the home page.'''
+    get_pie_chart_data()
     return render_template('1_home.html', title='ECE 528 Mood Sense',
                            year=datetime.now().year, set=zip(values, labels, colors), max=12)
 
