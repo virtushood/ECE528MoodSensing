@@ -60,17 +60,20 @@ def get_pie_chart_data():
 
 
     for img_blob in img_bucket.list_blobs():
-        json_blob = json_bucket.get_blob(img_blob.name + '/output-1-to-1.json')
-        json_url = ''
-        json_str = ''
-        if json_blob:
-            json_url = json_blob.public_url
-            json_str = json_blob.download_as_string()
-            json_obj = json.loads(json_str)
-            
-            for i, emotion_key in enumerate(emotions_keys):
-                if json_obj['responses'][0]['faceAnnotations'][0][emotion_key] in ['VERY_LIKELY', 'LIKELY', 'POSSIBLE']:
-                    values[i] += 1
+        try:
+            json_blob = json_bucket.get_blob(img_blob.name + '/output-1-to-1.json')
+            json_url = ''
+            json_str = ''
+            if json_blob:
+                json_url = json_blob.public_url
+                json_str = json_blob.download_as_string()
+                json_obj = json.loads(json_str)
+                
+                for i, emotion_key in enumerate(emotions_keys):
+                    if json_obj['responses'][0]['faceAnnotations'][0][emotion_key] in ['VERY_LIKELY', 'LIKELY', 'POSSIBLE']:
+                        values[i] += 1
+        except:
+            pass
 
 def make_img_table():
     ''' Generates a list of the components data for the /view page. '''
@@ -93,12 +96,15 @@ def make_img_table():
         json_url = ''
         json_str = ''
         if json_blob:
-            json_url = json_blob.public_url
-            json_str = json_blob.download_as_string()
-            json_obj = json.loads(json_str)
-            emotion_strs = []
-            for emotion_key, emotion in zip(emotions_keys, emotions):
-                emotion_strs.append(f"{emotion}={json_obj['responses'][0]['faceAnnotations'][0][emotion_key]}")
+            try:
+                json_url = json_blob.public_url
+                json_str = json_blob.download_as_string()
+                json_obj = json.loads(json_str)
+                emotion_strs = []
+                for emotion_key, emotion in zip(emotions_keys, emotions):
+                    emotion_strs.append(f"{emotion}={json_obj['responses'][0]['faceAnnotations'][0][emotion_key]}")
+            except:
+                pass
         images[img_blob.name] = [img_blob.public_url, json_url, img_blob.time_created, emotion_strs]
     return images
 
